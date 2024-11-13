@@ -1,43 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PrimaryButton from './PrimaryButton';
 import Select from './Select';
 import { Link } from 'react-router-dom';
 
 const products = [
-  { id: 1, name: 'Гра 1', price: '₴1400', img: 'deps/img/asset-1.jpg' },
-  { id: 2, name: 'Гра 2', price: '₴1500', img: 'deps/img/asset-2.jpg' },
-  { id: 3, name: 'Гра 3', price: '₴1600', img: 'deps/img/asset-3.jpg' },
-  { id: 4, name: 'Гра 4', price: '₴1700', img: 'deps/img/asset-4.jpg' }
+  { id: 1, name: 'Гра 1', price: 1400, img: 'deps/img/asset-1.jpg' },
+  { id: 2, name: 'Гра 2', price: 1500, img: 'deps/img/asset-2.jpg' },
+  { id: 3, name: 'Гра 3', price: 1600, img: 'deps/img/asset-3.jpg' },
+  { id: 4, name: 'Гра 4', price: 1700, img: 'deps/img/asset-4.jpg' },
+  { id: 5, img: "deps/img/asset-5.jpg", name: "Назва гри 5", price: "₴1600" },
+  { id: 6, img: "deps/img/asset-6.jpg", name: "Назва гри 6", price: "₴1100" },
 ];
 
 const Catalog = () => {
+  const [filter, setFilter] = useState('all');
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [searchQuery, setSearchQuery] = useState('');
+
   const options = [
     { label: 'Всі ігри', value: 'all' },
     { label: 'Ігри до ₴1500', value: 'under1500' },
     { label: 'Ігри більше ₴1500', value: 'over1500' }
   ];
 
-  // Function to handle category selection (future functionality)
   const handleSelectChange = (event) => {
-    console.log('Selected filter:', event.target.value);
+    setFilter(event.target.value);
   };
+
+  const handleSortChange = (event) => {
+    setSortOrder(event.target.value);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredProducts = products.filter((product) => {
+
+    if (filter === 'under1500' && product.price > 1500) return false;
+    if (filter === 'over1500' && product.price <= 1500) return false;
+
+    return product.name.toLowerCase().includes(searchQuery.toLowerCase());
+  });
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortOrder === 'asc') return a.price - b.price;
+    if (sortOrder === 'desc') return b.price - a.price;
+    return 0;
+  });
 
   return (
     <section className="catalog">
       <h2>Каталог ігор</h2>
 
-      {/* Select component for filtering */}
-      <Select options={options} onChange={handleSelectChange} value="all" />
+      <input
+        type="text"
+        placeholder="Пошук по назві..."
+        value={searchQuery}
+        onChange={handleSearchChange}
+      />
 
-      {/* Render product list */}
+      <Select options={options} onChange={handleSelectChange} value={filter} />
+
+      <Select
+        options={[
+          { label: 'Від дешевих до дорогих', value: 'asc' },
+          { label: 'Від дорогих до дешевих', value: 'desc' }
+        ]}
+        onChange={handleSortChange}
+        value={sortOrder}
+      />
+
       <div className="game-grid">
-        {products.map((product) => (
+        {sortedProducts.map((product) => (
           <div className="game-card" key={product.id}>
             <img src={product.img} alt={product.name} />
             <h3>{product.name}</h3>
-            <p>{product.price}</p>
+            <p>₴{product.price}</p>
             <Link to={`/product/${product.id}`}>
-              <PrimaryButton text="Додати в кошик" />
+              <PrimaryButton text="Детальніше" />
             </Link>
           </div>
         ))}

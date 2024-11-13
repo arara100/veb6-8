@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 
 const ProductDetail = () => {
   const { productId } = useParams();
-  // You can fetch product details based on the productId in future works
 
   return (
     <section className="product-detail">

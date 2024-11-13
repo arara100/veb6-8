@@ -175,3 +175,7 @@ footer .social-media a {
   margin: 0 10px;
   text-decoration: none;
 }
+
+.name {
+  justify-content: space-between;
+}
