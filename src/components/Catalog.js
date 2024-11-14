@@ -2,15 +2,7 @@ import React, { useState } from 'react';
 import PrimaryButton from './PrimaryButton';
 import Select from './Select';
 import { Link } from 'react-router-dom';
-
-const products = [
-  { id: 1, name: 'Гра 1', price: 1400, img: 'deps/img/asset-1.jpg' },
-  { id: 2, name: 'Гра 2', price: 1500, img: 'deps/img/asset-2.jpg' },
-  { id: 3, name: 'Гра 3', price: 1600, img: 'deps/img/asset-3.jpg' },
-  { id: 4, name: 'Гра 4', price: 1700, img: 'deps/img/asset-4.jpg' },
-  { id: 5, img: "deps/img/asset-5.jpg", name: "Назва гри 5", price: "₴1600" },
-  { id: 6, img: "deps/img/asset-6.jpg", name: "Назва гри 6", price: "₴1100" },
-];
+import products from './products';
 
 const Catalog = () => {
   const [filter, setFilter] = useState('all');

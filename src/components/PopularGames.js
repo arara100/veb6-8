@@ -2,6 +2,7 @@ import React from 'react';
 import Hero from './Hero';
 import SpecialOffers from './SpecialOffers';
 import { useState } from 'react';
+import products from './products';
 
 const PopularGames = () => {
   const games = [
