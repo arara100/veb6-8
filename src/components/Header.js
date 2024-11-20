@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LogoutButton from './LogoutButton';
 
 
 const Header = () => {
@@ -19,8 +20,13 @@ const Header = () => {
         </ul>
       </nav>
       <div className="header-right">
-        <a href="#">Увійти</a>
-        <a href="#" className="cart-icon">Кошик</a>
+        <li>
+            <Link to = '/signup'>Увійти</Link>
+        </li>
+        <li>
+            <Link to = '/cart'>Корзина</Link>
+        </li>
+        <LogoutButton />
       </div>
     </header>
   );

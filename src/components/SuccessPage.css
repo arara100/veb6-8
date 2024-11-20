@@ -1,0 +1,44 @@
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f4f4f9;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тінь навколо контейнера */
+  border-radius: 10px; /* Округлі кути */
+  background-color: #ffffff; /* Білий фон для контрасту */
+  max-width: 400px; /* Максимальна ширина контейнера */
+  margin: 0 auto; /* Центрування контейнера по горизонталі */
+}
+
+/* Заголовок */
+h1 {
+  font-size: 32px;
+  color: #28a745;
+  margin-bottom: 20px;
+}
+
+/* Текст */
+p {
+  font-size: 18px;
+  color: #555;
+  margin: 0;
+}
+
+/* Анімація появи */
+div {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}

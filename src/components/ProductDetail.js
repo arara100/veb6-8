@@ -12,7 +12,7 @@ const ProductDetail = () => {
 
   return (
     <section className="product-detail">
-      <img src={product.img} alt={product.name} />
+      <img сlass='img-detail' src={product.img} alt={product.name} />
       <h2>{product.name}</h2>
       <p>Ціна: ₴{product.price}</p>
       <p>Жанр: {product.genre}</p>
